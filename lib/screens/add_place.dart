@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:favorite_places_app/providers/user_places.dart';
 import 'package:favorite_places_app/widgets/image_input.dart';
+import 'package:favorite_places_app/widgets/location_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,7 +23,10 @@ class _AddPlaceState extends ConsumerState<AddPlaceScreen> {
       return;
     }
 
-    ref.read(userPlaceProvider.notifier).addPlace(enteredTitle, _selectedImage!);
+    ref
+        .read(userPlaceProvider.notifier)
+        .addPlace(enteredTitle, _selectedImage!);
+
     Navigator.of(context).pop();
 }
 
@@ -51,6 +55,8 @@ class _AddPlaceState extends ConsumerState<AddPlaceScreen> {
             ImageInput(onPickImage: (image) {
               _selectedImage = image;
             },),
+            SizedBox(height: 12.0,),
+            LocationInput(),
             SizedBox(height: 16.0,),
             ElevatedButton.icon(
               label: Text('Add Place'),
